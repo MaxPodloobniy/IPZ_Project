@@ -8,7 +8,7 @@ __Встановлення__
 ----------------
 
 Для початку, склонуйте репозиторій на свій комп'ютер:  
-```git clone https://github.com/your-username/moon-phase-calculator.git```  
+`git clone https://github.com/your-username/moon-phase-calculator.git`  
 Далі, перейдіть до папки проекту та встановіть необхідні залежності:  
 ```cd moon-phase-calculator  
 npm install```  
