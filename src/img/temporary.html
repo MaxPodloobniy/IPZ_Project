@@ -1,0 +1,46 @@
+const path = require('path');
+const url = require('url');
+const { app, BrowserWindow } = require('electron');
+const fs = require('fs');
+const installExtension = require('electron-devtools-installer').default;
+const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+
+function createWindow() {
+let win = new BrowserWindow({
+width: 700,
+height: 500,
+icon: __dirname + '/img/iconimage.webp',
+});
+
+// installExtension(REACT_DEVELOPER_TOOLS);
+// installExtension(REDUX_DEVTOOLS);
+
+win.loadURL(
+url.format({
+pathname: path.join(__dirname, 'index.html'),
+protocol: 'file',
+slashes: true,
+})
+);
+
+const filePath = path.join(__dirname, 'content/Moon.txt');
+fs.readFile(filePath, 'utf-8', (err, data) => {
+if (err) {
+console.error(err);
+return;
+}
+win.webContents.executeJavaScript(`
+const container = document.querySelector('#text_about_Moon');
+container.innerHTML = '${data.replace(/'/g, "\\'")}';
+`);
+});
+
+win.on('closed', () => {
+win = null;
+});
+}
+
+app.on('ready', createWindow);
+app.on('window-all-closed', () => {
+app.quit();
+});

@@ -1,0 +1,17 @@
+{
+  "name": "just_for_study",
+  "version": "1.0.0",
+  "description": "I'm learning electron, Node and javascript",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^23.2.1"
+  },
+  "devDependencies": {
+    "electron-devtools-installer": "^3.2.0"
+  }
+}
