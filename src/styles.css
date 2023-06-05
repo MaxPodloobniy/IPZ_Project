@@ -1,0 +1,88 @@
+html, body {
+    background-color: #19193B;
+    color: #FFFEFF;
+}
+
+.central_image {
+    position: absolute;
+    left: 15vw;
+    top: 10vh;
+    height: 42vh;
+    width: 63vw;
+    border: 1px solid darkgray;
+    margin-bottom: 0;
+    padding: 10px 10px 0;
+}
+
+.rises_sets {
+    position: absolute;
+    left: 15vw;
+    top: 54vh;
+    height: 23vh;
+    width: 65.5vw;
+    border: 1px solid darkgray;
+    vertical-align: middle;
+}
+
+#rises_sets_time{
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 15vw;
+    height: 80vh;
+}
+
+#rises_sets_time > * {
+    padding-left: 20%;
+}
+
+#MoonForTimeImg{
+    padding-top: 50%;
+}
+
+.rises_sets_time{
+    padding: 20px;
+    margin: 20px;
+}
+
+.text_about_obj {
+    position: absolute;
+    left: 15vw;
+    top: 77vh;
+    height: 15vh;
+    width: 63vw;
+    border: 1px solid darkgray;
+    padding: 10px;
+}
+
+.time {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 7vh;
+    width: 23vw;
+    padding: 10px;
+}
+
+.coord{
+    width: 80px;
+}
+
+.location {
+    position: absolute;
+    left: 80vw;
+    top: 0;
+    height: 7vh;
+    width: 25vw;
+    padding: 10px;
+}
+
+#text_about_Moon {
+    overflow: auto;
+}
+
+#Moon_cycle {
+    height: 100%;
+    width: 100%;
+}
+

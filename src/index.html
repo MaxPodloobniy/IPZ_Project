@@ -3,115 +3,47 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Мій десктоп</title>
-    <style>
-        html, body {
-            margin: auto;
-            background-color: #19193B;
-        }
-
-        .left {
-            position: absolute; /* додаємо абсолютне позиціонування */
-            left: 0; /* зміщуємо елемент вліво */
-            top: 0; /* зміщуємо елемент вгору */
-            height: 100vh; /* займає висоту екрану */
-            width: 20vw; /* ширина елемента */
-            border: 1px solid darkgray;
-            color: #FFFEFF;
-            background-color: #19193B;
-            padding: 10px;
-        }
-
-        .center {
-            position: absolute;
-            left: 30vw;
-            top: 10vh;
-            height: 45vh;
-            width: 60vw;
-            border: 1px solid darkgray;
-            color: #FFFEFF;
-            background-color: #19193B;
-            padding: 10px;
-        }
-
-        .rises_sets {
-            position: absolute;
-            left: 30vw;
-            top: 55vh;
-            height: 20vh;
-            width: 60vw;
-            border: 1px solid darkgray;
-            color: #FFFEFF;
-            background-color: #19193B;
-            padding: 10px;
-        }
-
-        .time {
-            position: absolute;
-            left: 20vw;
-            top: 0;
-            height: 10vh;
-            width: 20vw;
-            border: 1px solid darkgray;
-            color: #FFFEFF;
-            background-color: #19193B;
-            padding: 10px;
-        }
-
-        .text_about_obj {
-            position: absolute; /* додаємо абсолютне позиціонування */
-            left: 20vw;
-            top: 75vh;
-            height: 20vh;
-            width: 70vw;
-            border: 1px solid darkgray;
-            background-color: #19193B;
-            color: #FFFEFF;
-            padding: 10px;
-        }
-
-        .location {
-            position: absolute;
-            left: 80vw;
-            top: 0;
-            height: 10vh;
-            width: 20vw;
-            border: 1px solid darkgray;
-            color: #FFFEFF;
-            background-color: #19193B;
-            padding: 10px;
-        }
-
-        #text_about_Moon {
-            overflow: auto;
-        }
-    </style>
+    <title>Moon phase calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="libs/suncalc3/suncalc.js"></script>
+    <script src="calculations.js"></script>
 </head>
 
 <body>
-    <div class="left"></div>
-    <div class="time">
-        <label>Time</label>
-        <input type="datetime-local" id="moon_time" name="time">
+<div class="time">
+    <label for="moon_time">Time</label><br><input type="datetime-local" id="moon_time" name="time" value="2023-05-19T12:30">
+</div>
+<div id="rises_sets_time">
+    <div>
+        <img src="img/MoonForTime.png" alt="Moon For Time" id="MoonForTimeImg"><br>
+        <label id="MoonTimeRise">rises: 05:58</label><br>
+        <label id="MoonTimeSet">sets: 21:34</label><br>
     </div>
-    <div class="rises_sets"></div>
-    <div class="center"></div>
-    <div class="text_about_obj" id="text_about_Moon">
-        <label>Місяць - це найближчий до Землі натуральний супутник, що обертається навколо нашої планети. Він має діаметр близько 3476 кілометрів і вагу, яка дорівнює близько 1/80 ваги Землі.</label>
-        <p>Місяць був вивчений людиною з давніх-давен і залишається предметом дослідження для астрономів донині. З його поверхні можна спостерігати багато цікавих природних явищ, таких як кратери, гори, долини та інші геологічні утворення.</p>
-        <p>Місяць також відіграє важливу роль в нашому сонячному системі, впливаючи на природні явища на Землі, такі як припливи та відпливи. Крім того, він є об'єктом вивчення для багатьох космічних місій і досліджень, включаючи дослідження NASA "Аполлон", яке призвело до першого приземлення людини на Місяці в 1969 році.</p>
-        <p>Що стосується його зовнішнього вигляду, Місяць зазвичай виглядає як яскраве світло на нічному небі, яке змінює свою форму кожного місяця. Цей феномен відомий як фази Місяця і зумовлений його рухом навколо Землі та відносним положенням Місяця, Землі та Сонця.</p>
-        <p>Усі ці фактори роблять Місяць захоплюючим об'єктом для вивчення та дослідження. Незважаючи на те, що ми вже знаємо багато про цей натуральний супутник, він залишається предметом постійного дослідження і відкриття нових та цікавих фактів про космос і нашу сонячну систему.</p>
+    <div>
+        <img src="img/SunForTime.png" alt="Sun For Time"><br>
+        <label id="SunTimeRise">rises: 06:23</label><br>
+        <label id="SunTimeSet">sets: 22:48</label>
     </div>
-    <div class="location">
-        <label>Location:</label><br>
-        <label>Lat:</label><input type="text" id="Latitude" value="50.443917"><br>
-        <label>Long:</label><input type="text" id="Longitude" value="30.595227">
-    </div>
+</div>
+<div class="rises_sets" id="output">
+    <canvas id="myCanvas" style="width: 100%; height: 100%"></canvas>
+</div>
+<div class="central_image" id="Moon_photo_phase"></div>
+<div class="text_about_obj" id="text_about_Moon">
+    <label>Місяць - це найближчий до Землі натуральний супутник, що обертається навколо нашої планети. Він має діаметр близько 3476 кілометрів і вагу, яка дорівнює близько 1/80 ваги Землі.</label>
+    <p>Місяць був вивчений людиною з давніх-давен і залишається предметом дослідження для астрономів донині. З його поверхні можна спостерігати багато цікавих природних явищ, таких як кратери, гори, долини та інші геологічні утворення.</p>
+    <p>Місяць також відіграє важливу роль в нашому сонячному системі, впливаючи на природні явища на Землі, такі як припливи та відпливи. Крім того, він є об'єктом вивчення для багатьох космічних місій і досліджень, включаючи дослідження NASA "Аполлон", яке призвело до першого приземлення людини на Місяці в 1969 році.</p>
+    <p>Що стосується його зовнішнього вигляду, Місяць зазвичай виглядає як яскраве світло на нічному небі, яке змінює свою форму кожного місяця. Цей феномен відомий як фази Місяця і зумовлений його рухом навколо Землі та відносним положенням Місяця, Землі та Сонця.</p>
+    <p>Усі ці фактори роблять Місяць захоплюючим об'єктом для вивчення та дослідження. Незважаючи на те, що ми вже знаємо багато про цей натуральний супутник, він залишається предметом постійного дослідження і відкриття нових та цікавих фактів про космос і нашу сонячну систему.</p>
+</div>
+<div class="location">
+    <label>Location:</label><br>
+    <label for="Latitude">Lat:</label><input type="text" id="Latitude" value="50.443917" class="coord"><br>
+    <label for="Longitude">Long:</label><input type="text" id="Longitude" value="30.595227" class="coord">
+</div>
 
-    <script src="main.js">
-        require ('./render.js');
-    </script>
-
+<script src="main.js">
+    require ('./render.js');
+</script>
 </body>
 </html>
